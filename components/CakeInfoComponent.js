@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import { CAKES } from '../shared/cakes';
 
 function RenderCake({cake}) { 
+
     if (cake) {
         return (
             <Card 
@@ -17,8 +19,25 @@ function RenderCake({cake}) {
     return <View />;
 }
 
-function CakeInfo(props) { //functional component that receives props
-    return <RenderCake cake={props.cake} />;
+class CakeInfo extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state = {
+            cakes: CAKES
+        };
+    }
+
+    static navigationOptions = {
+        title: 'Deliciousness Information'
+    };
+
+    render(){
+        const cakeId = this.props.navigation.getParam('cakeId');
+        const cake = this.state.cakes.filter(cake => cake.id === cakeId)[0];
+        return <RenderCake cake={cake} />;
+    }
+    
 }
 
 export default CakeInfo;

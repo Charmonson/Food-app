@@ -1,34 +1,47 @@
 import React, { Component } from 'react';
 import Directory from './DirectoryComponent';
 import CakeInfo from './CakeInfoComponent';
-import {View} from 'react-native';
-import { CAKES } from '../shared/cakes';
+import Constants from 'expo-constants';
+import {View, Platform} from 'react-native';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+
+
+const DirectoryNavigator = createStackNavigator( //the follwoing argument defines whihc components will be available for the stack 
+    {
+        Directory: { screen: Directory },
+        CakeInfo: { screen: CakeInfo }
+    },
+    {
+       initialRouteName: 'Directory', //default to show this component
+       defaultNavigationOptions: {
+           headerStyle: {
+               backgroundColor: '#3A3132'
+           },
+           headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+       }
+
+    }
+
+);
+
+const AppNavigator = createAppContainer(DirectoryNavigator);
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cakes: CAKES,
-            selectedCake: null
-        };
-    }
-//event handler
-    onCakeSelect(cakeId){
-        this.setState({selectedCake: cakeId});
-    }
+
 
     render() {
         return (
-            <View style={{flex:1}}>
-                <Directory 
-                cakes={this.state.cakes}
-                onPress={cakeId => this.onCakeSelect(cakeId)} 
-                />
-                <CakeInfo
-                    cake={this.state.cakes.filter(
-                        cake => cake.id === this.state.selectedCake)[0]}
-                    //pass entire object not just property, use .filter array property to do so
-                />
+            <View 
+                style={{
+                    flex:1,
+                    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+                    }}
+            >
+                <AppNavigator/>
             </View>
         );
     }
