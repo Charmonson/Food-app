@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import CakeInfo from './CakeInfoComponent';
 import Constants from 'expo-constants';
 import {View, Platform} from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 
 
 const DirectoryNavigator = createStackNavigator( //the follwoing argument defines whihc components will be available for the stack 
     {
+       
         Directory: { screen: Directory },
         CakeInfo: { screen: CakeInfo }
     },
@@ -28,11 +31,36 @@ const DirectoryNavigator = createStackNavigator( //the follwoing argument define
 
 );
 
-const AppNavigator = createAppContainer(DirectoryNavigator);
+const HomeNavigator = createStackNavigator(
+    {
+        Home: { screen: Home }
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#3A3132'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
+const MainNavigator = createDrawerNavigator(
+    {
+        Home: { screen: HomeNavigator },
+        Directory: { screen: DirectoryNavigator }
+    },
+    {
+        drawerBackgroundColor: '#A69FB3'
+    }
+);
+
+const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
-
-
     render() {
         return (
             <View 
