@@ -12,7 +12,7 @@ function RenderItem({item}) {
                 featuredTitle={item.name}
                 image={require('./images/chocolate.jpg')}
             >
-                <Text style={{margin: 10}}>
+                <Text style={{margin: 20}}>
                     {item.description}
                 </Text>
             </Card>
