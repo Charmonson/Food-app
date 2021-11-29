@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Image} from 'react-native';
 import {Card, Text} from 'react-native-elements';
+
 
 
 class Contact extends Component {
@@ -18,8 +19,10 @@ class Contact extends Component {
 
     render() {
         return (
-
-            <ScrollView>          
+            
+            //almost not quite there yet
+            <ScrollView>
+                        
                 <Card title='Contact Information'
                     wrapperStyle={{margin: 15}}>
                 <Text> Wonderland Bakery </Text> 
@@ -27,7 +30,8 @@ class Contact extends Component {
                 <Text> Phone: 210-444-1113</Text>
                 <Text> wonderlandbakery@gmail.com</Text>
                 </Card>
-
+                <Image style={{width:400, height: 800 }}source={require('./images/confetti.jpg')}/>  
+                
             </ScrollView>
             
         );

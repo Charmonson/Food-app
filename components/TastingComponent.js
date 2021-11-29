@@ -140,12 +140,6 @@ class Tasting extends Component {
                         />
                     </View>
                 </Modal>
-
-
-
-
-
-
             </ScrollView>
         );
     }
