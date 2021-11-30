@@ -3,7 +3,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import StyledButton from "../StyledButton";
 import styles from './styles.js';
 
-const CarItem = (props) => {
+const CakeItem = (props) => {
 
   const {name, description, image }= props.cake;
 
@@ -26,6 +26,7 @@ const CarItem = (props) => {
           type="primary"
           content={"Menu & Pricing"}
           onPress={() => {
+            
             console.warn("Let's get you some sugar!");
           }}
         />
@@ -44,4 +45,4 @@ const CarItem = (props) => {
   );
 };
 
-export default CarItem;
+export default CakeItem;

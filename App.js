@@ -4,11 +4,14 @@ import { StyleSheet, View} from 'react-native';
 import CakesList from './components/CakesList';
 
 
+
 export default function App() {
   return (
+
     <View style={styles.container}>
 
       <CakesList/>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -23,4 +26,6 @@ const styles = StyleSheet.create({
   },
 
 });
+
+
 
